@@ -1,8 +1,8 @@
-import wisp.{type Request, type Response}
-import app/web
 import app/layout
 import app/pages/hello.{hello}
 import app/partials/demo.{demo}
+import app/web
+import wisp.{type Request, type Response}
 
 pub fn handle_request(req: Request) -> Response {
   use req <- web.middleware(req)
