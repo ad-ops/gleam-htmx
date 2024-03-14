@@ -19,6 +19,7 @@ mist = "~> 0.17"
 gleam_erlang = "~> 0.24"
 gleam_http = "~> 3.5"
 nakai = "~> 0.9"
+envoy = "~> 1.0"
 
 [dev-dependencies]
 gleeunit = "~> 1.0"
