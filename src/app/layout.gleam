@@ -48,12 +48,12 @@ pub fn render_partial(partial: html.Node(a)) {
   let content =
     partial
     |> nakai.to_inline_string_builder
-    |> inject_script_src
 
   wisp.ok()
   |> wisp.html_body(content)
 }
 
+// ugly hack to inject the htmx script tag into the html since nakai does not
 fn inject_script_src(html: StringBuilder) -> StringBuilder {
   html
   |> string_builder.replace(
@@ -66,14 +66,14 @@ fn hot_reloading() -> List(html.Node(n)) {
   [
     html.div(
       [
-        attrs.id("reload"),
         attrs.Attr("hx-get", "/reload"),
         attrs.Attr("hx-trigger", "every 0.5s"),
         attrs.Attr("hx-target", "#hot-reload"),
       ],
       [
         html.div([attrs.id("hot-reload")], [
-          html.Text("This will reload every second"),
+          html.Comment("This is a placeholder for the hot-reload response. It will be replaced by the server."),
+          html.Nothing,
         ]),
       ],
     ),
@@ -82,7 +82,6 @@ fn hot_reloading() -> List(html.Node(n)) {
       let serverStopped = false;
       let reload = undefined;
       document.body.addEventListener('htmx:sendError', function(evt) {
-          console.log(evt)
           const target = evt.detail.target;
           if (target.id === 'hot-reload') {
               serverStopped = true;
