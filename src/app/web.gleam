@@ -15,7 +15,7 @@ pub fn middleware(
 // ignores some paths when logging
 fn selective_logging(req: Request, usage: fn() -> Response) -> Response {
   case req.path {
-      "/reload" -> usage() // ignore logging for this path
-      _ -> wisp.log_request(req, usage)
+    "/reload" -> usage()
+    _ -> wisp.log_request(req, usage)
   }
 }
